@@ -1,3 +1,5 @@
+//WEB
+
 # 📚 BookFinder
 
 **BookFinder** is a Flask-based web application that integrates a MySQL relational database with the Spanish Wikipedia API to enrich book search results with real-time summaries.
@@ -164,8 +166,12 @@ http://127.0.0.1:5000/
 
 ---
 
-## 👩‍💻 Author
+## ⚖️ License
 
-Mariana Sinisterra
-Informatics Engineering Student
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project is under the **MIT License**.
+
+## 
 Backend Development • Automation • Scalable Systems
+
