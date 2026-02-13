@@ -1,0 +1,13 @@
+flask==2.3.2
+graphene==2.1.9
+graphene-sqlalchemy==2.3.0
+mysql-connector-python==9.1.0
+requests==2.32.0
+beautifulsoup4==4.11.2
+python-dotenv==0.21.1
+graphql-core==2.3.2
+graphql-relay==2.0.1
+flask-graphql==2.0.1
+ollama==0.4.7
+httpx~=0.28.1
+wikipedia-api==0.8.1

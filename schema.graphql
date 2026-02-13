@@ -1,0 +1,14 @@
+type Libro {
+  isbn: String
+  titulo: String
+  anioPublicacion: String
+  editorial: String
+  genero: String
+  prestado: String
+  autorId: String
+  resumen: String
+}
+
+type Query {
+  buscarLibros(titulo: String!): [Libro]
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="{{ lang or 'es' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ t('app_title') }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-book-open"></i> LibroFinder</h1>
+                <p class="tagline">{{ t('tagline') }}</p>
+            </div>
+            <div class="lang-switch">
+                <a href="/?lang=es" class="lang-button">{{ t('lang_es') }}</a>
+                <a href="/?lang=en" class="lang-button">{{ t('lang_en') }}</a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="search-section">
+                <form method="POST" action="/buscar" class="search-form">
+                    <div class="search-input-group">
+                        <input type="text"
+                               name="titulo"
+                               placeholder="{{ t('search_placeholder') }}"
+                               required
+                               value="{{ titulo_buscado if titulo_buscado else '' }}">
+                        <input type="hidden" name="lang" value="{{ lang or 'es' }}">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i> {{ t('search_button') }}
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            {% if error %}
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            {% if libros %}
+            <section class="results-section">
+                <h2 class="results-title">
+                    <i class="fas fa-search"></i> {{ t('results_for') }} "{{ titulo_buscado }}"
+                    <span class="results-count">{{ libros|length }} {{ t('found') }}</span>
+                </h2>
+
+                <div class="book-results">
+                    {% for libro in libros %}
+                    <article class="book-card">
+                        <div class="book-header">
+                            <h3 class="book-title">{{ libro.nombre }}</h3>
+                            <div class="book-badge">
+                                <span class="badge-text">{{ t('isbn') }}: {{ libro.isbn }}</span>
+                            </div>
+                        </div>
+
+                        <div class="book-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>{{ libro.anio_publicacion }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-building"></i>
+                                <span>{{ libro.editorial }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-tag"></i>
+                                <span>{{ libro.genero }}</span>
+                            </div>
+                        </div>
+
+                        <div class="book-summary">
+                            <h4 class="summary-title">
+                                <i class="fas fa-align-left"></i> {{ t('summary') }}
+                            </h4>
+                            <p class="summary-text">{{ libro.resumen }}</p>
+                        </div>
+
+                        <a href="{{ libro.wikipedia_url }}" class="wikipedia-link" target="_blank">
+                            <i class="fab fa-wikipedia-w"></i> {{ t('view_on_wikipedia') }}
+                        </a>
+                    </article>
+                    {% endfor %}
+                </div>
+            </section>
+            {% elif titulo_buscado %}
+            <div class="empty-results">
+                <i class="fas fa-book"></i>
+                <p>{{ t('no_results') }} "{{ titulo_buscado }}"</p>
+                <small>{{ t('try_another') }}</small>
+            </div>
+            {% endif %}
+        </main>
+
+        <footer class="app-footer">
+            <p>{{ t('footer') }}</p>
+        </footer>
+    </div>
+</body>
+</html>
