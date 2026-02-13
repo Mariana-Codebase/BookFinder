@@ -154,18 +154,6 @@ http://127.0.0.1:5000/
 
 ---
 
-## 🚀 Future Improvements
-
-* Docker containerization
-* Pagination support
-* Caching Wikipedia responses
-* REST API endpoint exposure
-* Deployment configuration (Render, Railway, AWS)
-* Unit and integration testing
-* Full GraphQL implementation
-
----
-
 ## ⚖️ License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -174,4 +162,5 @@ This project is under the **MIT License**.
 
 ## 
 Backend Development • Automation • Scalable Systems
+
 
